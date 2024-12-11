@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumberjack Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #87ceeb;
+    }
+    #gameCanvas {
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #000;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game</h1>
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+  <button id="playButton">Start Chopping!</button>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const playButton = document.getElementById('playButton');
+
+    
+    let chopping = false;
+    let score = 0;
+
+    // Tree properties
+    const tree = { x: 180, y: 0, width: 40, height: 600 };
+
+    function drawTree() {
+      ctx.fillStyle = 'brown';
+      ctx.fillRect(tree.x, tree.y, tree.width, tree.height);
+    }
+
+    function drawScore() {
+      ctx.fillStyle = 'black';
+      ctx.font = '20px Arial';
+      ctx.fillText(`Score: ${score}`, 10, 30);
+    }
+
+    function gameLoop() {
+      if (chopping) {
+        score += 1;
+        tree.height -= 2;
+      }
+
+      if (tree.height <= 0) {
+        chopping = false;
+        alert(`Game Over! Final Score: ${score}`);
+        score = 0;
+        tree.height = 600;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawTree();
+      drawScore();
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    playButton.addEventListener('click', () => {
+      chopping = !chopping;
+      playButton.textContent = chopping ? 'Stop Chopping!' : 'Start Chopping!';
+    });
+
+    gameLoop();
+  </script>
+</body>
+</html>
