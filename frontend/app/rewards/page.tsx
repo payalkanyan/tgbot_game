@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Score from '../components/Score';
 import Image from 'next/image';
 import { ethers } from 'ethers';
-// import RewardNFTABI from '../abis/RewardNFT.json'; // Import the ABI of the deployed NFT contract
+import RewardNFTABI from '../abis/RewardNFT.json'; // Import the ABI of the deployed NFT contract
 
 const Rewards = () => {
   const [userWallet, setUserWallet] = useState<string | null>(null);
@@ -16,7 +16,7 @@ const Rewards = () => {
   const [claimedNfts, setClaimedNfts] = useState<any[]>([]);
   const [claiming, setClaiming] = useState<boolean>(false); // Track claiming status
 
-  const contractAddress = 'YOUR_DEPLOYED_CONTRACT_ADDRESS'; // Replace with your deployed contract address
+  const contractAddress = '0xC348BdE8FE8a268951313094358C386F6e523a41'; // Replace with your deployed contract address
 
   useEffect(() => {
     const storedScore = localStorage.getItem('gameScore');
@@ -66,7 +66,7 @@ const Rewards = () => {
         const nftContract = new ethers.Contract(contractAddress, RewardNFTABI, signer);
 
         const tokenURI = '/5pp.png'; // Replace with actual token URI (metadata or image URL)
-        const transaction = await nftContract.claimNFT(signer.getAddress(), tokenURI);
+        const transaction = await nftContract.claimNFT(tokenURI);
 
         await transaction.wait(); // Wait for transaction to be mined
 

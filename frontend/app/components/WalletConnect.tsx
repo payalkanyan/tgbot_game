@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
