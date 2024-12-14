@@ -15,7 +15,18 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
     return typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
   };
 
-  // Function to add Mantle Sepolia network
+  // Check if Okto Wallet is available
+  const isOktoWalletInstalled = () => {
+    // Check for Okto Wallet provider
+    const oktoProvider = window.ethereum && (window as any).Okto;
+    
+    // Check for Okto Wallet extension
+    const oktoExtension = window.ethereum && window.ethereum.isOkto;
+  
+    return !!oktoProvider || !!oktoExtension;
+  };
+  
+  // Add Mantle Sepolia Network
   const addMantleSepoliaNetwork = async () => {
     if (window.ethereum) {
       try {
@@ -41,26 +52,34 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
     }
   };
 
-  // Function to connect MetaMask
   const connectWithMetaMask = async () => {
+    console.log("Attempting to connect with MetaMask...");
     if (isMetaMaskInstalled()) {
       try {
         const provider = new ethers.BrowserProvider(window.ethereum, "any");
+        console.log("MetaMask provider detected:", provider);
+  
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
+        console.log("MetaMask accounts:", accounts);
+  
         const network = await provider.getNetwork();
-
+        console.log("MetaMask network:", network);
+  
         if (Number(network.chainId) !== 5003) {
+          console.log("Switching to Mantle Sepolia network...");
           await addMantleSepoliaNetwork();
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId: "0x138B" }], // Chain ID: 5003 in hex
+            params: [{ chainId: "0x138B" }],
           });
         }
-
+  
         const signer = await provider.getSigner();
         const walletAddress = await signer.getAddress();
+        console.log("Connected wallet address:", walletAddress);
+  
         setAccount(walletAddress);
         onConnect(walletAddress);
       } catch (err) {
@@ -71,27 +90,31 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
       alert("MetaMask is not installed! Please install MetaMask to continue.");
     }
   };
+  
 
-  // Function to connect using WalletConnect
-  const connectWithWalletConnect = async () => {
-    const provider = new WalletConnectProvider({
-      rpc: {
-        5003: MANTLE_SEPOLIA_RPC_URL,
-      },
-    });
-
-    try {
-      await provider.enable();
-      const web3Provider = new ethers.BrowserProvider(provider, "any");
-      const signer = await web3Provider.getSigner();
-      const walletAddress = await signer.getAddress();
-      setAccount(walletAddress);
-      onConnect(walletAddress);
-    } catch (err) {
-      console.error("Error connecting with WalletConnect:", err);
-      alert("Failed to connect with WalletConnect.");
+  const connectWithOktoWallet = async () => {
+    console.log("Attempting to connect with Okto Wallet...");
+    if (isOktoWalletInstalled()) {
+      try {
+        const provider = new ethers.BrowserProvider((window as any).Okto);
+        console.log("Okto Wallet provider detected:", provider);
+  
+        const signer = await provider.getSigner();
+        const walletAddress = await signer.getAddress();
+        console.log("Connected wallet address:", walletAddress);
+  
+        setAccount(walletAddress);
+        onConnect(walletAddress);
+      } catch (err) {
+        console.error("Error connecting with Okto Wallet:", err);
+        alert("Failed to connect with Okto Wallet. Please ensure Okto Wallet is installed and up-to-date.");
+      }
+    } else {
+      alert("Okto Wallet is not detected. Please install the Okto Wallet app to continue.");
     }
   };
+  
+  
 
   // Auto-connect on page load
   useEffect(() => {
@@ -130,10 +153,10 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
             Connect with MetaMask
           </button>
           <button
-            onClick={connectWithWalletConnect}
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 m-2"
+            onClick={connectWithOktoWallet}
+            className="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-700 m-2"
           >
-            Connect with WalletConnect
+            Connect with Okto Wallet
           </button>
         </>
       )}

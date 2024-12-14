@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Score from '../components/Score';
 import Image from 'next/image';
 import { ethers } from 'ethers';
-import RewardNFTABI from '../abis/RewardNFT.json'; // Import the ABI of the deployed NFT contract
+// import RewardNFTABI from '../abis/RewardNFT.json'; // Import the ABI of the deployed NFT contract
 
 const Rewards = () => {
   const [userWallet, setUserWallet] = useState<string | null>(null);
