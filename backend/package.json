@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@grammyjs/conversations": "^1.2.0",
     "axios": "^1.7.9",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "grammy": "^1.33.0",
@@ -9,14 +11,17 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@types/node": "^22.10.1"
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
+    "nodemon": "^3.1.9"
   },
   "name": "bot-backend",
   "version": "1.0.0",
   "description": "tg bot backend",
   "main": "bot.js",
   "scripts": {
-    "start":"node server.js",
+    "start": "node server.js",
+    "dev": "nodemon bot.js",
     "test": "test"
   },
   "author": "",

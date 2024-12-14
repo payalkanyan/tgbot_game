@@ -1,28 +1,28 @@
-// server.js
-const express = require('express');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(bodyParser.json());
-dotenv.config();
-
-// Initialize MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userSessions = void 0;
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+exports.userSessions = {};
+exports.userSessions["1"] = "Alice";
+exports.userSessions["2"] = "Bob";
+exports.userSessions["3"] = "Charlie";
+app.get('/api/getuserName/:id', (request, response) => {
+    const userId = request.params.id.trim(); // Ensure it's trimmed and a string
+    console.log(`Received userId: ${userId}`); // Debugging userId
+    const userName = exports.userSessions[userId];
+    console.log(`Found username: ${userName}`); // Debugging userName
+    if (userName) {
+        response.send(`<h1>Hello, ${userName}!</h1>`);
+    }
+    else {
+        response.status(404).send('<h1>User not found</h1>');
+    }
 });
-
-const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
-
-const questRoutes = require('./routes/questRoutes');
-app.use('/api/quests', questRoutes);
-
+const PORT = 3005;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
-
