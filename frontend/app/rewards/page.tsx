@@ -92,15 +92,22 @@ const Rewards = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-500 text-white p-4">
-      <h1 className="text-4xl font-bold mb-6">Claim Rewards</h1>
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 text-black">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center text-white p-4"
+      style={{
+        backgroundImage: 'url("/bg2.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <h1 className="text-4xl font-bold mb-6 text-white">Claim Rewards</h1>
+      <div className="">
         <div className="text-center mb-6">
           <Score />
         </div>
 
-        <div className="bg-gray-100 rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">Claim Your NFT</h2>
+        <div className="w-full max-w-md bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 rounded-lg shadow-lg p-6 text-black">
+          <h2 className="text-2xl font-bold mb-4 text-center text-white">Claim Your NFT</h2>
           {!nftClaimed && score >= 1000 && (
             <p className="text-lg font-semibold text-green-500">You have {score} points! Claim your NFT now!</p>
           )}
@@ -108,12 +115,12 @@ const Rewards = () => {
             <p className="text-lg font-semibold text-yellow-500">You have {score} points! Claim your first NFT now!</p>
           )}
           {!nftClaimed && score < 500 && (
-            <p className="text-lg font-semibold text-red-500">You need at least 500 points to claim an NFT. Keep playing!</p>
+            <p className="text-lg font-semibold text-red">You need at least 500 points to claim an NFT. Keep playing!</p>
           )}
 
           <div className="mt-4 flex justify-center">
             <button
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-purple-700 text-white py-2 px-4 rounded shadow-lg hover:bg-purple-600"
               onClick={handleClaimNFT}
               disabled={score < 500 || nftClaimed || claiming}
             >
@@ -131,10 +138,10 @@ const Rewards = () => {
 
         {claimedNfts.length > 0 && (
           <div className="mt-8">
-            <h3 className="text-2xl font-bold mb-4">Your Claimed NFTs</h3>
+            <h3 className="text-2xl font-bold mb-4 text-white">Your Claimed NFTs</h3>
             <div className="space-y-4">
               {claimedNfts.map((nft) => (
-                <div key={nft.id} className="bg-gray-200 p-4 rounded-lg shadow-md">
+                <div key={nft.id} className="bg-purple-200 p-4 rounded-lg shadow-md">
                   <Image src={nft.image} alt="Claimed NFT" className="w-32 h-32 mx-auto rounded-full" width="100" height="100" />
                   <p className="mt-2 text-center text-sm text-gray-700">Claimed at: {nft.claimedAt}</p>
                 </div>
@@ -144,7 +151,7 @@ const Rewards = () => {
         )}
 
         <div className="flex items-center justify-center mt-6">
-          <p className="m-4 text-center underline decoration-blue-500 decoration-2">
+          <p className="m-4 text-center underline decoration-purple-500 decoration-2">
             <Link href="/">Back to Home</Link>
           </p>
         </div>

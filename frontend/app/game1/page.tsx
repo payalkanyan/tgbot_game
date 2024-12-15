@@ -108,55 +108,59 @@ const TransactionQueue = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-green-500 to-teal-500 text-white p-4">
-      <h1 className="text-4xl font-bold mb-6">Transaction Queue</h1>
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 text-black">
-      <h2 className="text-2xl font-bold mb-4 text-center">Level 1</h2>
+    <div 
+  className="min-h-screen flex flex-col items-center justify-center text-white p-4"
+  style={{ backgroundImage: 'url("/bg2.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+>
+  <h1 className="text-4xl font-bold mb-6">Transaction Queue</h1>
+  <div className="w-full max-w-md  rounded-lg shadow-lg p-6">
+    <h2 className="text-2xl font-bold mb-4 text-center text-white">Level 1</h2>
 
-        <ul>
-          {transactions.map((tx) => (
-            <li key={tx.id} className="flex justify-between items-center bg-gray-100 p-3 mb-2 rounded-lg shadow-md">
-              <span style={{ display: "flex", flexDirection: "column" }}>
-                <div>
-                  Value: {getRandomNumber(1, 100)} - Fee: {getRandomNumber(1, 20)}
-                </div>
-                <div>
-                  Time: {getRandomNumber(1, 7)}s - Extra Fee: {getRandomNumber(1, 10)}
-                </div>
-              </span>
-              <button 
-                className="bg-green-500 text-white py-1 px-3 rounded"
-                onClick={() => processTransaction(tx.id)}
-              >
-                Process
-              </button>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-4 flex justify-center">
-          <p>Your Score: {score}</p>
-        </div>
-        {isGameEnded && (
-          <div className="flex justify-center">
-            <button
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-              onClick={claimRewards} // Save the score when claiming rewards
-            >
-              {rewardSubmitted ? "Submitted" : "Submit to Claim Rewards"}
-            </button>
-            <button
-              className="mt-4 ml-4 bg-blue-500 text-white py-2 px-4 rounded"
-              onClick={startNewGame} // Start a new game and carry over the score
-            >
-              Mine more Blocks
-            </button>
-          </div>
-        )}
-      </div>
-      <p className="m-4 underline text-black decoration-blue-500 decoration-2">
-        <Link href="/">Back to Home</Link>
-      </p>
+    <ul>
+      {transactions.map((tx) => (
+        <li key={tx.id} className="flex justify-between items-center p-3 mb-2 rounded-lg shadow-md bg-gradient-to-r from-purple-700 to-purple-600 border-2 border-purple-600">
+          <span style={{ display: "flex", flexDirection: "column", color: "white" }}>
+            <div>
+              Value: {getRandomNumber(1, 100)} - Fee: {getRandomNumber(1, 20)}
+            </div>
+            <div>
+              Time: {getRandomNumber(1, 7)}s - Extra Fee: {getRandomNumber(1, 10)}
+            </div>
+          </span>
+          <button 
+            className="bg-purple-700 text-white py-1 px-3 rounded hover:bg-purple-600 transition-transform transform hover:scale-95"
+            onClick={() => processTransaction(tx.id)}
+          >
+            Process
+          </button>
+        </li>
+      ))}
+    </ul>
+    <div className="mt-4 flex justify-center">
+      <p className="text-white">Your Score: {score}</p>
     </div>
+    {isGameEnded && (
+      <div className="flex justify-center">
+        <button
+          className="mt-4 bg-gradient-to-r from-purple-400 via-purple-600 to-purple-900 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 transition-transform transform hover:scale-95"
+          onClick={claimRewards} // Save the score when claiming rewards
+        >
+          {rewardSubmitted ? "Submitted" : "Submit"}
+        </button>
+        <button
+          className="mt-4 ml-4 bg-gradient-to-r from-purple-400 via-purple-600 to-purple-900 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 transition-transform transform hover:scale-95"
+          onClick={startNewGame} // Start a new game and carry over the score
+        >
+          Keep Mining
+        </button>
+      </div>
+    )}
+  </div>
+  <p className="m-4 underline decoration-purple-500 decoration-2">
+    <Link href="/">Back to Home</Link>
+  </p>
+</div>
+
   );
 };
 

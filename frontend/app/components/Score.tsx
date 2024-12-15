@@ -16,7 +16,7 @@ const Score = () => {
 
       
     <div className=" flex items-center justify-center">
-    <div className="text-xl font-bold mb-4 text-center">
+    <div className="text-xl text-white font-bold mb-4 text-center">
       Your Score: {score !== null ? score : '0'} pts
     </div>
   </div>

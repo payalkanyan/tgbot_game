@@ -7,12 +7,26 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+/* styles/globals.css */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url('../public/bg.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white; /* Optional: Set text color for readability */
 }
+
 
 body {
   color: var(--foreground);
@@ -23,7 +37,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
 }
 
 .container {

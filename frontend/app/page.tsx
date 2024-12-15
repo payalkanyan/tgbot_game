@@ -10,15 +10,11 @@ const MainPage = () => {
   const [userWallet, setUserWallet] = useState<string | null>(null);
 
   const registerUser = async (walletAddress: string) => {
-    
-      const response = await fetch('http://localhost:5000/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ wallet: walletAddress }),
-      });
-
-     
-    
+    await fetch('http://localhost:5000/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ wallet: walletAddress }),
+    });
   };
 
   const handleWalletConnect = (walletAddress: string) => {
@@ -27,23 +23,24 @@ const MainPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-500 text-white p-4">
-      <h1 className="text-4xl font-bold mb-6 text-white">Mantler Mind Mining</h1>
-      {/* <p><DisplayUsername userId={"1"}/></p> */}
-      {/* <h2 className="text-2xl font-bold text-black">earn Max Fee in less Time</h2> */}
-      <div>
-        
+    <div
+    className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center relative"
+    style={{ backgroundImage: 'url(/bg2.jpg)' }}
+  >
+    <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Overlay */}
+    <div className="relative z-10">
+      <h1 className="text-5xl font-extrabold mb-8 mt-0 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+        Mantler Mind Mining
+      </h1>
 
-        {/* Only show WalletConnect button if the wallet is not connected */}
+      <div className="flex flex-col items-center gap-6 w-full max-w-md">
         {!userWallet && (
           <WalletConnect onConnect={handleWalletConnect} />
         )}
 
-        
-          
-          {userWallet && (
-            <div className="flex items-center">
-            <div className="w-12 h-12 relative rounded-full overflow-hidden border border-gray-300">
+        {userWallet && (
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-16 h-16 relative rounded-full overflow-hidden border-2 border-purple-500">
               <Image
                 src="/5pp.png"
                 alt="avatar"
@@ -51,27 +48,33 @@ const MainPage = () => {
                 objectFit="cover"
               />
             </div>
-          <p className="mt-4 text-center text-black-600 font-semibold p-6">
-            {userWallet.slice(0, 6)}...{userWallet.slice(-4)}
-          </p>
+            <p className="text-lg font-medium text-gray-300">
+              {userWallet.slice(0, 6)}...{userWallet.slice(-4)}
+            </p>
+          </div>
+        )}
 
-        </div>
-          )}
-        
-      <Score/>
-      </div>
+        <Score />
+
         <Link href="/game1">
-          <p className="bg-blue-600 text-center hover:bg-blue-700 p-4 rounded-lg shadow-md">Play Game</p>
-        </Link>
-        <Link href="/leaderboard">
-          <p className="bg-purple-600 text-center hover:bg-purple-700 p-4 m-4 rounded-lg shadow-md">Leaderboard</p>
-        </Link>
-        <Link href="/rewards">
-          <p className="bg-yellow-600 text-center hover:bg-yellow-700 p-4 rounded-lg shadow-md">Your Rewards</p>
-        </Link>
+            <p className="w-full p-4 bg-purple-900 text-white text-center py-3 rounded-lg shadow-lg border-b-2 border-r-2 border-white transition-transform transform hover:bg-purple-800 hover:scale-95">
+              Play Game
+            </p>
+          </Link>
+          <Link href="/leaderboard">
+            <p className="w-full p-4 bg-purple-900 text-white text-center py-3 rounded-lg shadow-lg border-b-2 border-r-2 border-white transition-transform transform hover:bg-purple-800 hover:scale-95">
+              Leaderboard
+            </p>
+          </Link>
+          <Link href="/rewards">
+            <p className="w-full p-4 bg-purple-900 text-white text-center py-3 rounded-lg shadow-lg border-b-2 border-r-2 border-white transition-transform transform hover:bg-purple-800 hover:scale-95">
+              Your Rewards
+            </p>
+          </Link>
       </div>
-    
+    </div>
+    </div>
   );
-}
+};
 
 export default MainPage;

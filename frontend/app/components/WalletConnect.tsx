@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import Image from 'next/image';
 
 interface WalletConnectProps {
   onConnect: (walletAddress: string) => void;
@@ -147,18 +148,19 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
         </p>
       ) : (
         <>
+        
           <button
             onClick={connectWithMetaMask}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 m-2"
+            className="bg-transaprent text-white px-4 py-2 rounded-md hover:bg-blue-700 m-2"
           >
-            Connect with MetaMask
+            0xD06a...4547
           </button>
-          <button
+          {/* <button
             onClick={connectWithOktoWallet}
             className="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-700 m-2"
           >
             Connect with Okto Wallet
-          </button>
+          </button> */}
         </>
       )}
     </div>
