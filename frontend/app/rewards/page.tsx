@@ -5,14 +5,18 @@ import Link from 'next/link';
 import Score from '../components/Score';
 import Image from 'next/image';
 
+// Define the structure of an NFT
+interface NFT {
+  id: number;
+  image: string;
+  claimedAt: string;
+}
+
 const Rewards = () => {
-  // const [userWallet, setUserWallet] = useState<string | null>(null);
   const [score, setScore] = useState<number>(0);
   const [nftClaimed, setNftClaimed] = useState<boolean>(false);
   const [showNftImage, setShowNftImage] = useState<boolean>(false);
-  /* eslint-enable @typescript-eslint/no-explicit-any */
-  const [claimedNfts, setClaimedNfts] = useState<any[]>([]);
-  /* eslint-enable @typescript-eslint/no-explicit-any */
+  const [claimedNfts, setClaimedNfts] = useState<NFT[]>([]);
   const [claiming, setClaiming] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,7 +26,7 @@ const Rewards = () => {
       setScore(Number(storedScore));
     }
     if (storedClaimedNfts) {
-      setClaimedNfts(JSON.parse(storedClaimedNfts));
+      setClaimedNfts(JSON.parse(storedClaimedNfts) as NFT[]);
     }
   }, []);
 
@@ -37,7 +41,7 @@ const Rewards = () => {
         localStorage.setItem('gameScore', String(updatedScore));
 
         // Simulate claimed NFT
-        const claimedNFT = {
+        const claimedNFT: NFT = {
           id: Date.now(),
           image: '/5pp.png',
           claimedAt: new Date().toLocaleString(),
@@ -64,13 +68,13 @@ const Rewards = () => {
     <div
       className="min-h-screen flex flex-col items-center justify-center text-white p-4"
       style={{
-        background: 'linear-gradient(45deg, #ff0000, #000, #ff0000, #000, #ff0000)',  // Retro gradient background
+        background: 'linear-gradient(45deg, #ff0000, #000, #ff0000, #000, #ff0000)', // Retro gradient background
         fontFamily: "'Press Start 2P', cursive, sans-serif", // Retro Mario-style font
       }}
     >
-  <h1 className="text-4xl font-bold mb-6 text-center  text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
-    Claim Rewards
-  </h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
+        Claim Rewards
+      </h1>
 
       <div>
         <div className="text-center mb-6">
