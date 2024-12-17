@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Score from '../components/Score';
 import Image from 'next/image';
+import { Interface } from 'ethers';
 
 const Rewards = () => {
   // const [userWallet, setUserWallet] = useState<string | null>(null);
   const [score, setScore] = useState<number>(0);
   const [nftClaimed, setNftClaimed] = useState<boolean>(false);
   const [showNftImage, setShowNftImage] = useState<boolean>(false);
-  const [claimedNfts, setClaimedNfts] = useState<any[]>([]);
+  const [claimedNfts, setClaimedNfts] = useState<Interface>();
   const [claiming, setClaiming] = useState<boolean>(false);
 
   useEffect(() => {

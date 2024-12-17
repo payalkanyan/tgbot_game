@@ -8,6 +8,8 @@ interface WalletConnectProps {
   onConnect: (walletAddress: string) => void;
 }
 
+
+
 const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
   const [account, setAccount] = useState<string | null>(null);
   const MANTLE_SEPOLIA_RPC_URL = "https://rpc.sepolia.mantle.xyz";
@@ -18,15 +20,15 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
   };
 
   // Check if Okto Wallet is available
-  const isOktoWalletInstalled = () => {
-    // Check for Okto Wallet provider
-    const oktoProvider = window.ethereum && (window as any).Okto;
+  // const isOktoWalletInstalled = () => {
+  //   // Check for Okto Wallet provider
+  //   const oktoProvider = window.ethereum && (window as any).Okto;
     
-    // Check for Okto Wallet extension
-    const oktoExtension = window.ethereum && window.ethereum.isOkto;
+  //   // Check for Okto Wallet extension
+  //   const oktoExtension = window.ethereum && window.ethereum.isOkto;
   
-    return !!oktoProvider || !!oktoExtension;
-  };
+  //   return !!oktoProvider || !!oktoExtension;
+  // };
   
   // Add Mantle Sepolia Network
   const addMantleSepoliaNetwork = async () => {

@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+// import { useState } from 'react';
 import Image from "next/image";
 
 const leaderboardData = [
@@ -11,10 +11,10 @@ const leaderboardData = [
 ];
 
 // Define the type for leaderboard entries
-interface LeaderboardEntry {
-  username: string;
-  score: number;
-}
+// interface LeaderboardEntry {
+//   username: string;
+//   score: number;
+// }
 
 const Leaderboard = () => {
   // Use the defined type for the leaderboard state
