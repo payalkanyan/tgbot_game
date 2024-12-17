@@ -1,0 +1,54 @@
+{
+  "transactions": [
+    {
+      "hash": null,
+      "transactionType": "CALL",
+      "contractName": null,
+      "contractAddress": "0xc348bde8fe8a268951313094358c386f6e523a41",
+      "function": "claimNFT(string)",
+      "arguments": [
+        "ipfs://QmRAuxeMnsjPsbwW8LkKtk6Nh6MoqTvyKwP3zwuwJnB2yP"
+      ],
+      "transaction": {
+        "from": "0x433c2b6a62bcf8e2c610fdeae8191c1ed6235aae",
+        "to": "0xc348bde8fe8a268951313094358c386f6e523a41",
+        "gas": "0x3e87f",
+        "value": "0x0",
+        "input": "0x1172075600000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000035697066733a2f2f516d52417578654d6e736a5073627757384c6b4b746b364e68364d6f715476794b7750337a7775774a6e423279500000000000000000000000",
+        "nonce": "0x1",
+        "chainId": "0x138b"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": null,
+      "transactionType": "CALL",
+      "contractName": null,
+      "contractAddress": "0xc348bde8fe8a268951313094358c386f6e523a41",
+      "function": "mintNFT(address,string)",
+      "arguments": [
+        "0x433c2B6a62Bcf8e2C610fdeae8191C1ED6235aAe",
+        "ipfs://QmRAuxeMnsjPsbwW8LkKtk6Nh6MoqTvyKwP3zwuwJnB2yP"
+      ],
+      "transaction": {
+        "from": "0x433c2b6a62bcf8e2c610fdeae8191c1ed6235aae",
+        "to": "0xc348bde8fe8a268951313094358c386f6e523a41",
+        "gas": "0x39b18f88",
+        "value": "0x0",
+        "input": "0xeacabe14000000000000000000000000433c2b6a62bcf8e2c610fdeae8191c1ed6235aae00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000035697066733a2f2f516d52417578654d6e736a5073627757384c6b4b746b364e68364d6f715476794b7750337a7775774a6e423279500000000000000000000000",
+        "nonce": "0x2",
+        "chainId": "0x138b"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [],
+  "returns": {},
+  "timestamp": 1734257837,
+  "chain": 5003,
+  "commit": "36f1a8e"
+}

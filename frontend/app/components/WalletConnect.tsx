@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import Image from 'next/image';
+// import WalletConnectProvider from "@walletconnect/web3-provider";
+// import Image from 'next/image';
 
 interface WalletConnectProps {
   onConnect: (walletAddress: string) => void;
@@ -94,27 +94,27 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
   };
   
 
-  const connectWithOktoWallet = async () => {
-    console.log("Attempting to connect with Okto Wallet...");
-    if (isOktoWalletInstalled()) {
-      try {
-        const provider = new ethers.BrowserProvider((window as any).Okto);
-        console.log("Okto Wallet provider detected:", provider);
+  // const connectWithOktoWallet = async () => {
+  //   console.log("Attempting to connect with Okto Wallet...");
+  //   if (isOktoWalletInstalled()) {
+  //     try {
+  //       const provider = new ethers.BrowserProvider((window as any).Okto);
+  //       console.log("Okto Wallet provider detected:", provider);
   
-        const signer = await provider.getSigner();
-        const walletAddress = await signer.getAddress();
-        console.log("Connected wallet address:", walletAddress);
+  //       const signer = await provider.getSigner();
+  //       const walletAddress = await signer.getAddress();
+  //       console.log("Connected wallet address:", walletAddress);
   
-        setAccount(walletAddress);
-        onConnect(walletAddress);
-      } catch (err) {
-        console.error("Error connecting with Okto Wallet:", err);
-        alert("Failed to connect with Okto Wallet. Please ensure Okto Wallet is installed and up-to-date.");
-      }
-    } else {
-      alert("Okto Wallet is not detected. Please install the Okto Wallet app to continue.");
-    }
-  };
+  //       setAccount(walletAddress);
+  //       onConnect(walletAddress);
+  //     } catch (err) {
+  //       console.error("Error connecting with Okto Wallet:", err);
+  //       alert("Failed to connect with Okto Wallet. Please ensure Okto Wallet is installed and up-to-date.");
+  //     }
+  //   } else {
+  //     alert("Okto Wallet is not detected. Please install the Okto Wallet app to continue.");
+  //   }
+  // };
   
   
 

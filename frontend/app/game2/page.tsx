@@ -3,17 +3,15 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 const TransactionQueue = () => {
-
   const getRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
-  
+
   const [transactions, setTransactions] = useState([
     { id: 1, value: 50, fee: 10, timeToProcess: 3, priority: 1, extrafee: 2 },
     { id: 2, value: 30, fee: 5, timeToProcess: 2, priority: 3, extrafee: 0 },
     { id: 3, value: 20, fee: 3, timeToProcess: 1, priority: 2, extrafee: 1 },
     { id: 4, value: 20, fee: 3, timeToProcess: 1, priority: 2, extrafee: 1 },
-    { id: 5, value: 20, fee: 3, timeToProcess: 1, priority: 2, extrafee: 1 },
   ]);
 
   const [score, setScore] = useState(0);
@@ -111,58 +109,69 @@ const TransactionQueue = () => {
 
   return (
     <div 
-  className="min-h-screen flex flex-col items-center justify-center text-white p-4"
-  style={{ backgroundImage: 'url("/bg2.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
->
-  <h1 className="text-4xl font-bold mb-6">Transaction Queue</h1>
-  <div className="w-full max-w-md  rounded-lg shadow-lg p-6">
-    <h2 className="text-2xl font-bold mb-4 text-center text-white">Level 2</h2>
+      className="min-h-screen flex flex-col items-center justify-center text-white p-4"
+      style={{
+        background: 'linear-gradient(45deg, #ff0000, #000, #ff0000, #000, #ff0000)',  // Retro gradient background
+        fontFamily: "'Press Start 2P', cursive, sans-serif", // Retro Mario-style font
+      }}
+    >
+      <h1 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white shadow-2xl">
+        Transaction Queue ⛏️
+      </h1>
+      
+      <div className="w-full max-w-md rounded-lg shadow-lg p-6 bg-black bg-opacity-70">
+        <h2 className="text-2xl font-bold mb-4 text-center text-yellow-300">Level 2</h2>
 
-    <ul>
-    {transactions.map((tx) => (
-        <li key={tx.id} className="flex justify-between items-center p-3 mb-2 rounded-lg shadow-md bg-gradient-to-r from-purple-700 to-purple-600 border-2 border-purple-600">
-          <span style={{ display: "flex", flexDirection: "column", color: "white" }}>
-            <div>
-              Value: {getRandomNumber(1, 100)} - Fee: {getRandomNumber(1, 20)}
-            </div>
-            <div>
-              Time: {getRandomNumber(1, 7)}s - Extra Fee: {getRandomNumber(1, 10)}
-            </div>
-          </span>
-          <button 
-            className="bg-purple-700 text-white py-1 px-3 rounded hover:bg-purple-600 transition-transform transform hover:scale-95"
-            onClick={() => processTransaction(tx.id)}
-          >
-            Process
-          </button>
-        </li>
-      ))}
-    </ul>
-    <div className="mt-4 flex justify-center">
-      <p className="text-white">Your Score: {score}</p>
-    </div>
-    {isGameEnded && (
-      <div className="flex justify-center">
-        <button
-          className="mt-4 bg-gradient-to-r from-purple-400 via-purple-600 to-purple-900 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 transition-transform transform hover:scale-95"
-          onClick={claimRewards} // Save the score when claiming rewards
-        >
-          {rewardSubmitted ? "Submitted" : "Submit"}
-        </button>
-        <button
-          className="mt-4 ml-4 bg-gradient-to-r from-purple-400 via-purple-600 to-purple-900 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-800 transition-transform transform hover:scale-95"
-          onClick={startNewGame} // Start a new game and carry over the score
-        >
-          Keep Mining
-        </button>
+        <ul>
+          {transactions.map((tx) => (
+            <li key={tx.id} className="flex justify-between items-center p-3 mb-2 rounded-lg shadow-md bg-gradient-to-r from-yellow-500 to-red-500 border-2 border-red-500">
+              <span style={{ display: "flex", flexDirection: "column" }}>
+                <div className="text-white">
+                  Value: {getRandomNumber(1, 100)} 
+                </div>
+                <div className="text-white">
+                  Fee: {getRandomNumber(1, 20)}
+                </div>
+                <div className="text-white">
+                  Time: {getRandomNumber(1, 7)}s 
+                </div>
+                <div className="text-white">
+                  XFee: {getRandomNumber(1, 10)}
+                </div>
+              </span>
+              <button 
+                className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-400 transition-transform transform hover:scale-95"
+                onClick={() => processTransaction(tx.id)}
+              >
+                Process
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 flex justify-center">
+          <p className="text-white">Your Score: {score}</p>
+        </div>
+        {isGameEnded && (
+          <div className="flex justify-center">
+            <button
+              className="mt-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-700 transition-transform transform hover:scale-95"
+              onClick={claimRewards} // Save the score when claiming rewards
+            >
+              {rewardSubmitted ? "Submitted" : "Submit"}
+            </button>
+            <button
+              className="mt-4 ml-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-700 transition-transform transform hover:scale-95"
+              onClick={startNewGame} // Start a new game and carry over the score
+            >
+              Keep Mining
+            </button>
+          </div>
+        )}
       </div>
-    )}
-  </div>
-  <p className="m-4 underline decoration-purple-500 decoration-2">
-    <Link href="/">Back to Home</Link>
-  </p>
-</div>
-
+      <p className="m-4 underline decoration-yellow-500 decoration-2">
+        <Link href="/">Back to Home</Link>
+      </p>
+    </div>
   );
 };
 
