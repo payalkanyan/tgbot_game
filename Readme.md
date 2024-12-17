@@ -4,7 +4,7 @@ is the Mantle Sepolia based Telegram Bot game which helps one to simulate the tr
 
 
 Here is the deployed contract on Mantle Sepolia Testnet:
-[0xC348BdE8FE8a268951313094358C386F6e523a41](https://explorer.sepolia.mantle.xyz/address/0xc348bde8fe8a268951313094358c386f6e523a410)
+[0xC348BdE8FE8a268951313094358C386F6e523a41](https://explorer.sepolia.mantle.xyz/address/0xc348bde8fe8a268951313094358c386f6e523a41?tab=contract)
 
 
 ![alt text](/images/image.png)
